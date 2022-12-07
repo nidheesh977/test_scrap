@@ -1,0 +1,41 @@
+.SuggestionsContainer{
+    margin-bottom: 85px;
+}
+.suggestionsTitle{
+    margin-bottom: 20px;
+}
+
+.suggestionInputContainer{
+    padding: 16px;
+    position: relative;
+}
+
+.suggestionLabel{
+    display: block;
+    font-size: 14px;
+    line-height: 21px;
+}
+
+.suggestionInput{
+    font-size: 16px;
+    background-color: none;
+    background: none;
+    border: none;
+    outline: none;
+    width: 100%;
+}
+
+.suggestionInputLeftBox{
+    width: 16px;
+    height: 16px;
+    background: linear-gradient(45deg, #fff 50%, rgba(0, 0, 0, 0.199) 50%);
+    position: absolute;
+    left: 0;
+    bottom: 0px;
+}
+
+.suggestionSubmitBtn{
+    padding-left: 50px;
+    padding-right: 50px;
+    margin: 10px 0px;
+}

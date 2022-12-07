@@ -1,0 +1,19 @@
+.pricingSection{
+    margin-top: 100px;
+}
+.plansBenifits{
+    margin-top: 50px;
+}
+.faqsContainer{
+    background-color: #F0F2FE;
+    padding: 30px;
+    border-radius: 25px;
+}
+.faqsTitle{
+    font-size: 48px;
+    line-height: 55px;
+    margin-bottom: 28px;
+}
+.PricingAdditionalText{
+    margin: 50px 0px;
+}

@@ -1,0 +1,31 @@
+.main{
+    background: #1d2130;
+    color: #fff;
+  }
+  .footerGridIContainer{
+    padding: 40px;
+  }
+  .footerGridItem{
+    padding: 0px 10px;
+  }
+  .footerUl{
+    list-style-type: none;
+    padding: 0px;
+  }
+  .footerTitle{
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .footerLink{
+    font-size: 16px;
+    line-height: 30px;
+    cursor: pointer;
+    color: #c0c0c0;
+    text-decoration: none;
+  }
+  .footerLink:hover{
+    text-decoration: underline;
+  }
+  .footerLogo{
+    margin: 20px 0px;
+  }

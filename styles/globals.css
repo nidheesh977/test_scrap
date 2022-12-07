@@ -2,25 +2,125 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
-
-a {
-  color: inherit;
-  text-decoration: none;
+h1{
+  font-size: 55px;
+  line-height: 82px;
+  margin: 0px;
 }
-
-* {
-  box-sizing: border-box;
+h2{
+  font-size: 32px;
+  line-height: 39px;
+  margin: 0;
 }
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
+h3{
+  font-size: 28px;
+  line-height: 30px;
+  margin: 0px;
+}
+h4{
+  font-size: 24px;
+  line-height: 29px;
+  margin: 0px;
+}
+h5{
+  font-size: 18px;
+  line-height: 22px;
+  margin: 0px;
+}
+h6{
+  font-size: 16px;
+  line-height: 20px;
+  margin: 0px;
+}
+p{
+  font-size: 14px;
+  line-height: 21px;
+  margin: 0px;
+}
+.btn1{
+  padding: 7px 21px;
+  font-size: 14px;
+  line-height: 21px;
+  background: #58B9FD;
+  border-radius: 50px;
+  text-transform: initial;
+}
+.btn1:hover{
+  background: #4c9fda;
+}
+.btn2{
+  font-size: 16px;
+  text-transform: initial;
+}
+.t-center{
+  text-align: center;
+}
+.label{
+  font-size: 16px;
+  line-height: 24px;
+  display: block;
+  margin-bottom: 2px;
+  color: #18345E;
+  cursor: pointer;
+}
+label{
+  cursor: pointer;
+}
+.input1{
+  padding: 12px;
+  background-color: #F4F2F2;
+  border: 1px solid #F4F2F2;
+  font-size: 16px;
+  line-height: 24px;
+  width: calc(100% - 24px);
+  border-radius: 6px;
+  color: #18345e80;
+  margin-bottom: 10px;
+}
+.input1:focus, .input1:focus-visible{
+  border: 1px solid #c5c5c5;
+  outline: none
+}
+.form-err-msg{
+  margin-bottom: 22px;
+  color: red;
+  font-size: 16px;
+  display: none;
+}
+.c-pointer{
+  cursor: pointer;
+}
+.input2{
+  width: 100%;
+  border: 0px;
+  border-bottom: 2px solid #c5c5c5;
+  padding: 10px 0px;
+  margin-bottom: 10px;
+}
+.input2:focus, .input2:focus-visible{
+  border-bottom: 2px solid #929292;
+  outline: none;
+}
+.css-11b3ww9-MuiPaper-root-MuiAppBar-root{
+  background-color: #fff !important;
+  box-shadow: initial;
+}
+button{
+  text-transform: initial !important;
+}
+.logo{
+  margin: 10px 0px;
+  height: 70px;
+  width: initial;
+  object-fit: contain;
+}
+.bg-l-pink{
+  background-color: #F8CDE0;
+}
+.bg-l-orange{
+  background-color: #F9F3A7;
+}
+.bg-l-blue{
+  background-color: #CEE9E0;
 }

@@ -1,0 +1,29 @@
+.contactImg{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.selectSubjectMainContainer{
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+.subjectTitle{
+    margin-bottom: 14px;
+}
+.selectSubjectLabel{
+    font-size: 14px;
+}
+.selectSubjectContainer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px;
+}
+.formContainer, .contactImgContainer{
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+.submitBtn{
+    text-align: right;
+}
