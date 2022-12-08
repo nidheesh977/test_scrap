@@ -5,7 +5,7 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 import Link from "next/link";
-import LoginSignupImg from "../images/LoginSignupImg.png";
+import LoginSignupImg from "../images/loginSignupImg.png";
 import MailOutlinedIcon from "@mui/icons-material/MailOutlined";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
