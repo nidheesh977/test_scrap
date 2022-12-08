@@ -160,7 +160,7 @@ function Pricing() {
             <div>
               {faqs.map((item, index) => {
                 return (
-                  <Accordion sx={accordionItem}>
+                  <Accordion sx={accordionItem} key = {index}>
                     <AccordionSummary
                       expandIcon={<ExpandMoreIcon />}
                       aria-controls={`panel${index+1}a-content`}
