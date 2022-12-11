@@ -19,7 +19,8 @@ function Login(props) {
   let [showPassword, setShowPassword] = useState(false)
   let [validationErrors, setValidationErrors] = useState({
     email: {error: false, msg: ""},
-    password: {error: false, msg: ""},
+    password1: {error: false, msg: ""},
+    password2: {error: false, msg: ""},
     others: {error: false, msg: ""}
   })
   let [data, setData] = useState({
@@ -102,16 +103,25 @@ function Login(props) {
                       <MailOutlinedIcon className = {styles.inputIcon}/>
                     </div>
                     <p className = "form-err-msg" id = "email-err-msg" style = {{display: validationErrors.email.error?"block": 'none'}}>{validationErrors.email.msg}</p>
-                    <label htmlFor = "password" className = "label">Password</label>
+                    <label htmlFor = "password1" className = "label">Password</label>
                     <div className = {styles.inputContainer}>
-                      <input type={showPassword?"text":"password"} name="password" id="password" className = "input1" onChange = {changeHandler} />
+                      <input type={showPassword?"text":"password"} name="password1" id="password1" className = "input1" onChange = {changeHandler} />
                       {showPassword
                         ? <VisibilityOutlinedIcon className = {`${styles.inputIcon} c-pointer`} onClick = {toggleShowPassword}/>
                         : <VisibilityOffOutlinedIcon className = {`${styles.inputIcon} c-pointer`} onClick = {toggleShowPassword}/>
                       }
                     </div>
-                    <p className = "form-err-msg" id = "password-err-msg" style = {{display: validationErrors.password.error?"block": 'none'}}>{validationErrors.password.msg}</p>
-                    <p className="form-err-msg" id="password-err-msg" style = {{display: validationErrors.others.error?"block": 'none'}}>
+                    <p className = "form-err-msg" id = "password1-err-msg" style = {{display: validationErrors.password1.error?"block": 'none'}}>{validationErrors.password1.msg}</p>
+                    <label htmlFor = "password2" className = "label">Confirm Password</label>
+                    <div className = {styles.inputContainer}>
+                      <input type={showPassword?"text":"password"} name="password2" id="password2" className = "input1" onChange = {changeHandler} />
+                      {showPassword
+                        ? <VisibilityOutlinedIcon className = {`${styles.inputIcon} c-pointer`} onClick = {toggleShowPassword}/>
+                        : <VisibilityOffOutlinedIcon className = {`${styles.inputIcon} c-pointer`} onClick = {toggleShowPassword}/>
+                      }
+                    </div>
+                    <p className = "form-err-msg" id = "password2-err-msg" style = {{display: validationErrors.password2.error?"block": 'none'}}>{validationErrors.password2.msg}</p>
+                    <p className="form-err-msg" id="other-err-msg" style = {{display: validationErrors.others.error?"block": 'none'}}>
                       {validationErrors.others.msg}
                     </p>
                     <Button variant="contained" className = {styles.submitBtn} onClick = {clickSubmit} disabled = {loading}>Sign In
