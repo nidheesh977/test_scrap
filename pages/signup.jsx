@@ -85,11 +85,7 @@ function Signup(props) {
         password2: data.password2,
       })
       .then(res => {
-        console.log(res)
-        localStorage.setItem("access", res.data.data.access)
-        localStorage.setItem("refresh", res.data.data.refresh)
-        props.updateLoginStatus(true)
-        Router.push("/")
+        Router.push("/login")
         setLoading(false)
       })
       .catch(err => {

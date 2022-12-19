@@ -69,6 +69,7 @@ function Login(props) {
         console.log(res)
         localStorage.setItem("access", res.data.data.access)
         localStorage.setItem("refresh", res.data.data.refresh)
+        localStorage.setItem("user", res.data.data.user_id)
         props.updateLoginStatus(true)
         Router.push("/")
         setLoading(false)

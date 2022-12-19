@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import Image from "next/image";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
@@ -12,12 +12,9 @@ import StepContent from '@mui/material/StepContent';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import IconButton from '@mui/material/IconButton';
-import Input from '@mui/material/Input';
-import FilledInput from '@mui/material/FilledInput';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import InputAdornment from '@mui/material/InputAdornment';
-import FormHelperText from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
@@ -25,54 +22,58 @@ import styles from "../styles/Workflow.module.css";
 import { styled } from '@mui/material/styles';
 import Switch from '@mui/material/Switch';
 import Stack from '@mui/material/Stack';
+import axios from "axios"
+
 
 function Workflow() {
   const [activeStep, setActiveStep] = React.useState(0);
   const fieldsList = {
     individual: [
-        "profile picture link",
-        "Name",
-        "degree connection",
-        "designation",
-        "city",
-        "contact info",
-        "connections",
-        "Highlights link , picture",
-        "About",
-        "Experience as single data",
-        "Education as single data",
-        "Skills as a list of data",
-        "Project",
-        "Interests and groups as a list of data",
-        "languages",
+      "Basic",
+      "Contact",
+      "Education",
+      "Experience",
+      "Skills"
     ],
     company: [
-        "Name",
-        "company profile image link",
-        "followers count",
-        "employees list , linkedin profile url",
-        "about",
+      "Basic",
+      "About",
+      "Employees"
     ]
   }
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
 
-  const [values, setValues] = React.useState({
-    email: '',
-    password: '',
-    showPassword: false,
-  });
+  const [showPassword, setShowPassword] = React.useState(false)
+
+  const [mainData, setMainData] = React.useState({
+    user: "",
+    given_link: "",
+    link_type: 2,
+    needed_data: [],
+    credentials: {
+      username: "",
+      password: "",
+      website: 1,
+    }
+  })
+
+  useEffect(()=>{
+    let tempMainData = mainData
+    tempMainData.user = localStorage.getItem("user")
+    setMainData({...tempMainData})
+    console.log("UseEffect")
+  }, [])
 
   const handleChange = (prop) => (event) => {
-    setValues({ ...values, [prop]: event.target.value });
+    let tempMainData = mainData
+    tempMainData["credentials"][prop] = event.target.value
+    setMainData({...tempMainData})
   };
 
   const handleClickShowPassword = () => {
-    setValues({
-      ...values,
-      showPassword: !values.showPassword,
-    });
+    setShowPassword(!showPassword)
   };
 
   const handleMouseDownPassword = (event) => {
@@ -162,17 +163,17 @@ function Workflow() {
                     <Typography variant="caption">Ender LinkedIn Credential</Typography>
                 }
                 >
-                Step 1
+                Step 1 {mainData.user}
                 </StepLabel>
                 <StepContent>
                     <Box sx = {{margin: "20px 0px"}}>
-                        <TextField id="outlined-basic" label="Email ID" variant="outlined" fullWidth className={styles.inputField}/>
+                        <TextField id="outlined-basic" label="Email ID" variant="outlined" fullWidth className={styles.inputField} value = {mainData.credentials.username}/>
                         <FormControl variant="outlined" fullWidth className={styles.inputField}>
                             <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                             <OutlinedInput
                                 id="outlined-adornment-password"
-                                type={values.showPassword ? 'text' : 'password'}
-                                value={values.password}
+                                type={showPassword ? 'text' : 'password'}
+                                value={mainData.credentials.password}
                                 onChange={handleChange('password')}
                                 endAdornment={
                                 <InputAdornment position="end">
@@ -182,7 +183,7 @@ function Workflow() {
                                     onMouseDown={handleMouseDownPassword}
                                     edge="end"
                                     >
-                                    {values.showPassword ? <VisibilityOff /> : <Visibility />}
+                                    {showPassword ? <VisibilityOff /> : <Visibility />}
                                     </IconButton>
                                 </InputAdornment>
                                 }
@@ -252,12 +253,13 @@ function Workflow() {
                 </StepLabel>
                 <StepContent>
                 <Box sx = {{margin: "20px 0px"}}>
-                    {fieldsList.individual.map((field, index) => {
+                    {fieldsList.company.map((field, index) => {
                         return(
                             <Stack direction="row" spacing={1} alignItems="center" key = {index} sx = {{marginBottom: "10px"}}>
                                 <AntSwitch inputProps={{ 'aria-label': 'ant design' }} />
                                 <Typography>{field}</Typography>
                             </Stack>
+
                         )
                     })}
                 </Box>
