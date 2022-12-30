@@ -23,7 +23,9 @@ import { styled } from '@mui/material/styles';
 import Switch from '@mui/material/Switch';
 import Stack from '@mui/material/Stack';
 import axios from "axios"
+import Router from 'next/router';
 
+const backend = process.env.NEXT_PUBLIC_BACKEND
 
 function Workflow() {
   const [activeStep, setActiveStep] = React.useState(0);
@@ -42,10 +44,12 @@ function Workflow() {
     ]
   }
   const handleNext = () => {
+    console.log(mainData)
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
 
   const [showPassword, setShowPassword] = React.useState(false)
+  const [error, setError] = React.useState(false)
 
   const [mainData, setMainData] = React.useState({
     user: "",
@@ -63,10 +67,10 @@ function Workflow() {
     let tempMainData = mainData
     tempMainData.user = localStorage.getItem("user")
     setMainData({...tempMainData})
-    console.log("UseEffect")
   }, [])
 
   const handleChange = (prop) => (event) => {
+    setError(false)
     let tempMainData = mainData
     tempMainData["credentials"][prop] = event.target.value
     setMainData({...tempMainData})
@@ -79,6 +83,33 @@ function Workflow() {
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
+
+  const handleSubmit = () => {
+    axios.post(`${backend}/api/task-create`, mainData)
+    .then(res => {
+      console.log(res)
+      Router.push("/data")
+    })
+    .catch(err => {
+      console.log(err)
+      setActiveStep(0)
+    })
+  }
+
+  const flipField = (field) => {
+    setError(false)
+    let fields = mainData.needed_data
+    if (fields.includes(field)){
+      fields.splice(fields.indexOf(field), 1)
+    }else{
+      fields.push(field)
+    }
+
+    setMainData({
+      ...mainData,
+      needed_data: fields
+    })
+  }
 
   const AntSwitch = styled(Switch)(({ theme }) => ({
     width: 28,
@@ -163,11 +194,11 @@ function Workflow() {
                     <Typography variant="caption">Ender LinkedIn Credential</Typography>
                 }
                 >
-                Step 1 {mainData.user}
+                Step 1
                 </StepLabel>
                 <StepContent>
                     <Box sx = {{margin: "20px 0px"}}>
-                        <TextField id="outlined-basic" label="Email ID" variant="outlined" fullWidth className={styles.inputField} value = {mainData.credentials.username}/>
+                        <TextField id="outlined-basic" label="Email ID" variant="outlined" fullWidth className={styles.inputField} value = {mainData.credentials.username} onChange={handleChange('username')}/>
                         <FormControl variant="outlined" fullWidth className={styles.inputField}>
                             <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                             <OutlinedInput
@@ -256,7 +287,7 @@ function Workflow() {
                     {fieldsList.company.map((field, index) => {
                         return(
                             <Stack direction="row" spacing={1} alignItems="center" key = {index} sx = {{marginBottom: "10px"}}>
-                                <AntSwitch inputProps={{ 'aria-label': 'ant design' }} />
+                                <AntSwitch inputProps={{ 'aria-label': 'ant design' }} checked = {mainData.needed_data.includes(field)} onChange = {()=>flipField(field)}/>
                                 <Typography>{field}</Typography>
                             </Stack>
 
@@ -267,7 +298,7 @@ function Workflow() {
                     <div>
                       <Button
                           variant="contained"
-                          onClick={handleNext}
+                          onClick={handleSubmit}
                           sx={{ mt: 1, mr: 1 }}
                       >
                           Gerrate Lead
@@ -284,6 +315,10 @@ function Workflow() {
                 </StepContent>
             </Step>
         </Stepper>
+        {error
+        ?<p>Invalid fields</p>
+        :""
+        }
       </Box>
       {/* {activeStep === steps.length && (
         <Paper square elevation={0} sx={{ p: 3 }}>
