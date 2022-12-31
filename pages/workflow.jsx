@@ -76,6 +76,13 @@ function Workflow() {
     setMainData({...tempMainData})
   };
 
+  const handleUrlChange = (e) => {
+    setError(false)
+    let tempMainData = mainData
+    tempMainData.given_link = event.target.value
+    setMainData({...tempMainData})
+  }
+
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword)
   };
@@ -85,15 +92,18 @@ function Workflow() {
   };
 
   const handleSubmit = () => {
-    axios.post(`${backend}/api/task-create`, mainData)
-    .then(res => {
-      console.log(res)
-      Router.push("/data")
-    })
-    .catch(err => {
-      console.log(err)
-      setActiveStep(0)
-    })
+    console.log(mainData)
+    setError(true)
+    // axios.post(`${backend}/api/task-create`, mainData)
+    // .then(res => {
+    //   console.log(res)
+    //   Router.push("/data")
+    // })
+    // .catch(err => {
+      // setError(true)
+    //   console.log(err)
+    //   setActiveStep(0)
+    // })
   }
 
   const flipField = (field) => {
@@ -109,6 +119,12 @@ function Workflow() {
       ...mainData,
       needed_data: fields
     })
+  }
+
+  const handleStep = (step) => {
+    if (step < activeStep){
+      setActiveStep(step)
+    }
   }
 
   const AntSwitch = styled(Switch)(({ theme }) => ({
@@ -190,9 +206,11 @@ function Workflow() {
         <Stepper activeStep={activeStep} orientation="vertical">
             <Step>
                 <StepLabel
+                className = "c-pointer"
                 optional={
                     <Typography variant="caption">Ender LinkedIn Credential</Typography>
                 }
+                onClick = {()=>handleStep(0)}
                 >
                 Step 1
                 </StepLabel>
@@ -244,15 +262,17 @@ function Workflow() {
             </Step>
             <Step>
                 <StepLabel
+                className = "c-pointer"
                 optional={
                     <Typography variant="caption">Ender the Search Link </Typography>
                 }
+                onClick = {()=>handleStep(1)}
                 >
                 Step 2
                 </StepLabel>
                 <StepContent>
                 <Box sx = {{margin: "20px 0px"}}>
-                    <TextField id="outlined-basic" label="URL" variant="outlined" fullWidth className={styles.inputField}/>
+                    <TextField id="outlined-basic" label="URL" variant="outlined" fullWidth className={styles.inputField} value = {mainData.given_link} onChange = {handleUrlChange}/>
                 </Box>
                 <Box sx={{ mb: 2 }}>
                     <div>
@@ -276,9 +296,11 @@ function Workflow() {
             </Step>
             <Step>
                 <StepLabel
+                className = "c-pointer"
                 optional={
                     <Typography variant="caption">Select require data</Typography>
                 }
+                onClick = {()=>handleStep(2)}
                 >
                 Step 3
                 </StepLabel>
@@ -315,10 +337,7 @@ function Workflow() {
                 </StepContent>
             </Step>
         </Stepper>
-        {error
-        ?<p>Invalid fields</p>
-        :""
-        }
+        <p className='form-err-msg' style = {error?{display: "block"}:{}}>Invalid fields</p>
       </Box>
       {/* {activeStep === steps.length && (
         <Paper square elevation={0} sx={{ p: 3 }}>
