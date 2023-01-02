@@ -153,6 +153,17 @@ function Workflow() {
     },
   }));
 
+  const handleSubmitCredentials = () => {
+    axios.post(`${backend}/api/credential-checker`, {email: mainData.credentials.email, password: mainData.credentials.password})
+    .then(res => {
+      console.log(res)
+      handleNext()
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }
+
   return (
     <section>
         <Grid
@@ -226,7 +237,7 @@ function Workflow() {
                     <div>
                     <Button
                         variant="contained"
-                        onClick={handleNext}
+                        onClick={handleSubmitCredentials}
                         sx={{ mt: 1, mr: 1 }}
                     >
                         Submit
