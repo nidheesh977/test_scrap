@@ -17,6 +17,7 @@ import Logo from "../images/logo.png";
 import Image from "next/image";
 import styles from "../styles/Navbar.module.css";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 const drawerWidth = 240;
 const navItems = [
@@ -26,6 +27,7 @@ const navItems = [
 ];
 
 function DrawerAppBar(props) {
+  const router = useRouter()
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -82,6 +84,7 @@ function DrawerAppBar(props) {
                 key={item}
                 sx={{ color: "#000" }}
                 className={styles.navItem}
+                onClick = {()=>router.push(item.link)}
               >
                 {item.label}
               </Button>
