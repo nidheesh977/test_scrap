@@ -39,19 +39,19 @@ p{
   margin: 0px;
 }
 .btn1{
-  padding: 7px 21px;
-  font-size: 14px;
-  line-height: 21px;
-  background: #58B9FD;
-  border-radius: 50px;
-  text-transform: initial;
+  padding: 7px 21px!important;
+  font-size: 14px!important;
+  line-height: 21px!important;
+  background: #58B9FD!important;
+  border-radius: 50px!important;
+  text-transform: initial!important;
 }
 .btn1:hover{
-  background: #4c9fda;
+  background: #4c9fda!important;
 }
 .btn2{
-  font-size: 16px;
-  text-transform: initial;
+  font-size: 16px!important;
+  text-transform: initial!important;
 }
 .t-center{
   text-align: center;
@@ -102,7 +102,7 @@ label{
   border-bottom: 2px solid #929292;
   outline: none;
 }
-.css-11b3ww9-MuiPaper-root-MuiAppBar-root{
+.navbar{
   background-color: #fff !important;
   box-shadow: initial;
 }

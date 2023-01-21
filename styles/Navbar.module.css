@@ -1,6 +1,6 @@
 .navItem{
-    margin: 0px 10px;
-    border-radius: 30px;
+    margin: 0px 10px !important;
+    border-radius: 30px !important;
 }
 .navItemLink{
     text-decoration: none;
